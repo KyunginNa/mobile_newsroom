@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { StatusBar } from 'expo-status-bar'
 import Articles from '../modules/Articles'
+import ArticleIndexDetails from './ArticleIndexDetails'
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +21,7 @@ const MainScreen = () => {
       <FlatList
         data={articles}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={({ item }) => <ArticleIndexDetails article={item} />}
       />
     </View>
   )

@@ -3,7 +3,20 @@ import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 
 const ArticleIndexDetails = ({ article }) => {
   return (
-    <Image
+    <>
+      <Image
+        source={{ uri: article.image }}
+        style={styles.image}
+      />
+      <View style={styles.card}>
+        <Text style={styles.title}>
+          {article.title}
+        </Text>
+        <Text style={styles.subtitle}>
+          {article.category}
+        </Text>
+      </View>
+    </>
   )
 }
 
@@ -21,7 +34,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontSize: 36,
+    fontSize: 30,
   },
   subtitle: {
     color: "white",
