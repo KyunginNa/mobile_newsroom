@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { StatusBar } from 'expo-status-bar'
+import Articles from '../modules/Articles'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 
 const MainScreen = () => {
-  const { appTitle } = useSelector(state => state)
+  const { articles } = useSelector(state => state)
+  useEffect(() => { Articles.index() }, [])
   return (
     <View style={styles.container}>
-      <Text>{appTitle}</Text>
       <StatusBar style="auto" />
+      <FlatList
+        data={articles}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <Text>{item.title}</Text>}
+      />
     </View>
   )
 }
