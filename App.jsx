@@ -15,25 +15,29 @@ const App = () => {
         <Stack.Screen
           name="Start"
           component={MainScreen}
-          options={{
-            title: appTitle,
-            headerStyle: {
-              backgroundColor: 'lightblue'
-            },
-            headerTitleStyle: {
-              color: 'white',
-              fontSize: 21,
-              fontWeight: 'bold'
-            }
-          }}
+          options={styles}
         />
         <Stack.Screen
           name="ArticleShow"
           component={ArticleShow}
+          options={styles}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+const styles = {
+  title: "News of the world",
+  headerStyle: {
+    backgroundColor: '#959cca'
+  },
+  headerTitleStyle: {
+    color: 'white',
+    fontSize: 21,
+    fontWeight: 'bold'
+  }
+}
+
 
 export default App
