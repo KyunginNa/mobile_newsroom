@@ -1,9 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native'
 
-const ArticleIndexDetails = ({ article }) => {
+const ArticleIndexDetails = ({ navigation, article }) => {
   return (
-    <>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("ArticleShow", { article: article })
+      }}
+    >
       <Image
         source={{ uri: article.image }}
         style={styles.image}
@@ -16,7 +20,7 @@ const ArticleIndexDetails = ({ article }) => {
           {article.category}
         </Text>
       </View>
-    </>
+    </TouchableOpacity>
   )
 }
 
