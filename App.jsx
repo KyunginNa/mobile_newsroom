@@ -2,8 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MainScreen from './components/MainScreen'
-import ArticleShow from './components/ArticleShow'
+import MainScreen from './app/components/MainScreen'
+import ArticleShow from './app/components/ArticleShow'
+import LoginScreen from './app/components/LoginScreen'
+import { Ionicons } from '@expo/vector-icons'
 
 const Stack = createStackNavigator()
 
@@ -15,12 +17,35 @@ const App = () => {
         <Stack.Screen
           name="Start"
           component={MainScreen}
-          options={styles}
+          options={(props) => ({
+            title: appTitle,
+            headerRight: () => {
+              return (
+                <Ionicons
+                  name="person"
+                  size={24}
+                  color="white"
+                  onPress={() => props.navigation.navigate('Login')}
+                  style={{marginRight: 10}}
+                />
+              )
+            },
+            ...styles
+          })}
         />
+
         <Stack.Screen
           name="ArticleShow"
           component={ArticleShow}
-          options={styles}
+          options={{
+            title: appTitle,
+            ...styles
+          }}
+        />
+
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -28,7 +53,6 @@ const App = () => {
 }
 
 const styles = {
-  title: "News of the world",
   headerStyle: {
     backgroundColor: '#959cca'
   },
@@ -38,6 +62,5 @@ const styles = {
     fontWeight: 'bold'
   }
 }
-
 
 export default App
